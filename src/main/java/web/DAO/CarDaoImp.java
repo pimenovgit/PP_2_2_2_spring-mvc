@@ -30,7 +30,7 @@ public class CarDaoImp implements CarDao{
     }
 
     @Override
-    public List<Car> showCars(int count) {
+    public List<Car> getCarList(int count) {
         return carList.subList(0, count);
     }
 

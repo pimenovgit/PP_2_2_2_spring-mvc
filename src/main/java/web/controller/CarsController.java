@@ -15,21 +15,18 @@ import java.util.List;
 
 @Controller
 public class CarsController {
-    private CarService carService;
-
-
-    public CarsController() {
-        this.carService = new CarServiceImp();
+private CarService carService;
+@Autowired
+    public CarsController(CarServiceImp carServiceImp) {
+        this.carService = carServiceImp;
     }
-
 
     @GetMapping(value = "/cars")
     public String getCars(@RequestParam (value = "count", required = false) Integer count, Model model) {
-        this.carService = new CarServiceImp();
         if (count == null || count > carService.countCars())  {
             count = carService.countCars();
         }
-        model.addAttribute("cars", carService.showCars(count));
+        model.addAttribute("cars", carService.getCarList(count));
         return "cars";
     }
 }
