@@ -7,10 +7,14 @@ import web.DAO.CarDaoImp;
 import web.model.Car;
 
 import java.util.List;
-@Component
-public class CarServiceImp implements CarService{
 
-    CarDao cdi = new CarDaoImp();
+@Service
+public class CarServiceImp implements CarService{
+   private CarDao cdi;
+
+   public CarServiceImp(CarDaoImp cdi) {
+       this.cdi = cdi;
+   }
 
     @Override
     public List<Car> getCarList(int count) {
